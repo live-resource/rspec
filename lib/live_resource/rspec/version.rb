@@ -1,5 +1,5 @@
 module LiveResource
-  module Rspec
+  module RSpec
     VERSION = "0.0.1"
   end
 end

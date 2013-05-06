@@ -5,7 +5,7 @@ require 'live_resource/rspec/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "live_resource-rspec"
-  spec.version       = LiveResource::Rspec::VERSION
+  spec.version       = LiveResource::RSpec::VERSION
   spec.authors       = ["Will Madden"]
   spec.email         = ["w.a.madden@gmail.com"]
   spec.description   = %q{TODO: Write a gem description}
