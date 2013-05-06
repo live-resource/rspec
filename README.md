@@ -1,6 +1,6 @@
 # LiveResource::Rspec
 
-TODO: Write a gem description
+Adds custom matchers and helper methods for testing LiveResource with RSpec.
 
 ## Installation
 
@@ -18,7 +18,56 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# app/controllers/profiles_controller.rb
+class ProfilesController < ApplicationController
+  live_resource :profile_show do
+    identifier { |profile| profile_path(profile) }
+    depends_on(Profile) { |profile| push(profile) } # Requires live_resource-activerecord
+    depends_on(Avatar) { |avatar| push(avatar.profile) }
+  end
+end
+```
+
+```ruby
+# spec/controllers/profiles_controller_spec.rb
+require "spec_helper"
+
+describe ProfilesController do
+
+  describe "profile_show_resource" do
+    subject { resource }
+
+    let(:resource) { controller.profile_show_resource }
+
+    expect_it { to depend_on(Profile) }
+    expect_it { to depend_on(Avatar) }
+
+    describe '#identifier' do
+      subject { controller.profile_show_resource.identifier(profile) }
+
+      let(:profile) { double(Profile) }
+
+      it { should == profile_path(profile) }
+    end
+
+    describe 'the Profile dependency' do
+      subject { dependency.invoke(profile) }
+
+      let(:dependency) { dependency_on(resource, Profile) }
+      let(:profile) { double(Profile) }
+
+      it 'should push an update to the profile' do
+        resource.should_receive(:push).with(profile)
+        subject
+      end
+    end
+
+    ...
+  end
+
+end
+```
 
 ## Contributing
 
