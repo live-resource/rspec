@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "live_resource-rspec"
   spec.version       = LiveResource::RSpec::VERSION
   spec.authors       = ["Will Madden"]
-  spec.email         = ["w.a.madden@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.email         = ["will@letsgeddit.com"]
+  spec.description   = %q{LiveResource RSpec integration}
+  spec.summary       = %q{Adds custom matchers and helper methods for testing LiveResource with RSpec}
   spec.homepage      = ""
   spec.license       = "MIT"
 
